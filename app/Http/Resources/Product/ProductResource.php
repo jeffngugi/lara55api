@@ -17,9 +17,14 @@ class ProductResource extends Resource
         return [
             'name'=> $this->name,
             'description' =>$this->detail,
-            'price'=>$this->stock,
+            'price'=>$this->price,
             'discount'=>$this->discount,
+            'totalPrice' => round((1 -($this->discount/100)) * $this->price, 2),
             'stock'=>$this->stock,
+            'rating' => round($this->reviews->sum('star')/$this->reviews->count()),
+            'href' => [
+                'reviews' => route('reviews.index', $this->id)
+            ]
         ];
     }
 }
