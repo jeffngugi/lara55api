@@ -23,7 +23,7 @@ class ProductResource extends Resource
             'stock'=>$this->stock,
             'rating' => round($this->reviews->sum('star')/$this->reviews->count()),
             'href' => [
-                'reviews' => route('reviews.index', $this->id)
+                'link' => route('reviews.index', $this->id)
             ]
         ];
     }
